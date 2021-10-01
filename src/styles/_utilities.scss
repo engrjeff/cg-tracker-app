@@ -1,0 +1,233 @@
+@use "sass:map";
+
+$font-sizes: 12 14 16 18 20 24 28 32 36 40;
+
+// Text Font Size (text-size-{size}px)
+@each $size in $font-sizes {
+  .text-size-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+
+// Text Alignments
+$alignments: (
+  "left": left,
+  "right": right,
+  "center": center,
+  "justify": justify,
+);
+
+@each $align, $align-value in $alignments {
+  .text-#{$align} {
+    text-align: $align-value;
+  }
+}
+
+$spacing: (
+  "px": 1px,
+  "0": 0,
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 0.75rem,
+  "4": 1rem,
+  "5": 1.25rem,
+  "6": 1.5rem,
+  "8": 2rem,
+  "10": 2.5rem,
+  "12": 3rem,
+  "16": 4rem,
+  "20": 5rem,
+  "24": 6rem,
+  "32": 8rem,
+  "40": 10rem,
+  "48": 12rem,
+  "56": 14rem,
+  "64": 16rem,
+);
+
+// Add auto to the positive margin classes
+$margin: map.merge(
+  (
+    "auto": auto,
+  ),
+  $spacing
+);
+
+// Margin (Positive)
+@each $space, $space-value in $margin {
+  .m-#{$space} {
+    margin: $space-value;
+  }
+
+  .mx-#{$space} {
+    margin-left: $space-value;
+    margin-right: $space-value;
+  }
+
+  .my-#{$space} {
+    margin-top: $space-value;
+    margin-bottom: $space-value;
+  }
+
+  .mt-#{$space} {
+    margin-top: $space-value;
+  }
+
+  .mb-#{$space} {
+    margin-bottom: $space-value;
+  }
+
+  .ml-#{$space} {
+    margin-left: $space-value;
+  }
+  .mr-#{$space} {
+    margin-right: $space-value;
+  }
+}
+
+// Margin (Negative)
+@each $space, $space-value in $spacing {
+  .-m-#{$space} {
+    margin: -$space-value;
+  }
+
+  .-mx-#{$space} {
+    margin-left: -$space-value;
+    margin-right: -$space-value;
+  }
+
+  .-my-#{$space} {
+    margin-top: -$space-value;
+    margin-bottom: -$space-value;
+  }
+
+  .-mt-#{$space} {
+    margin-top: -$space-value;
+  }
+
+  .-mb-#{$space} {
+    margin-bottom: -$space-value;
+  }
+
+  .-ml-#{$space} {
+    margin-left: -$space-value;
+  }
+  .-mr-#{$space} {
+    margin-right: -$space-value;
+  }
+}
+
+// Padding
+@each $space, $space-value in $spacing {
+  .p-#{$space} {
+    padding: $space-value;
+  }
+
+  .px-#{$space} {
+    padding-left: $space-value;
+    padding-right: $space-value;
+  }
+
+  .py-#{$space} {
+    padding-top: $space-value;
+    padding-bottom: $space-value;
+  }
+
+  .pt-#{$space} {
+    padding-top: $space-value;
+  }
+
+  .pb-#{$space} {
+    padding-bottom: $space-value;
+  }
+
+  .pl-#{$space} {
+    padding-left: $space-value;
+  }
+  .pr-#{$space} {
+    padding-right: $space-value;
+  }
+}
+
+// Display
+$display: (
+  "block": block,
+  "inline-block": inline-block,
+  "inline": inline,
+  "flex": flex,
+  "inline-flex": inline-flex,
+  "grid": grid,
+  "inline-grid": inline-grid,
+  "hidden": none,
+) !default;
+
+@each $d, $d-value in $display {
+  .d-#{$d} {
+    display: $d-value;
+  }
+}
+
+$widths: (
+  "100": 100%,
+  "50": 50%,
+  "25": 25%,
+  "vw": 100vw,
+);
+
+$heights: (
+  "100": 100%,
+  "50": 50%,
+  "25": 25%,
+  "vh": 100vh,
+);
+
+@each $w, $w-value in $widths {
+  .w-#{$w} {
+    width: $w-value;
+  }
+}
+
+@each $h, $h-value in $heights {
+  .h-#{$h} {
+    height: $h-value;
+  }
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.with-gap {
+  gap: $base-flex-gap;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,93 @@
+$colors: (
+  primary: (
+    base: $primary,
+    light: lighten($primary, $lighten),
+    dark: darken($primary, $darken),
+  ),
+  secondary: (
+    base: $secondary,
+    light: lighten($secondary, $lighten),
+    dark: darken($secondary, $darken),
+  ),
+  success: (
+    base: $success,
+    light: lighten($success, $lighten),
+    dark: darken($success, $darken),
+  ),
+  info: (
+    base: $info,
+    light: lighten($info, $lighten),
+    dark: darken($info, $darken),
+  ),
+  danger: (
+    base: $danger,
+    light: lighten($danger, $lighten),
+    dark: darken($danger, $darken),
+  ),
+  warning: (
+    base: $warning,
+    light: lighten($warning, $lighten),
+    dark: darken($warning, $darken),
+  ),
+  dark-500: (
+    base: $dark-500,
+    light: lighten($dark-500, $lighten),
+    dark: darken($dark-500, $darken),
+  ),
+  dark-300: (
+    base: $dark-300,
+    light: lighten($dark-300, $lighten),
+    dark: darken($dark-300, $darken),
+  ),
+  dark-100: (
+    base: $dark-100,
+    light: lighten($dark-100, $lighten),
+    dark: darken($dark-100, $darken),
+  ),
+  light-100: (
+    base: $light-100,
+  ),
+  primary-light: (
+    base: $primary-light,
+  ),
+  "white": (
+    base: $white,
+  ),
+  "black": (
+    base: $black,
+  ),
+);
+
+// For text colors
+@each $color-key, $color-value in $colors {
+  @each $tone-key, $tone-value in $color-value {
+    @if $tone-key == base {
+      .text-#{$color-key} {
+        color: $tone-value !important;
+      }
+    } @else {
+      @if $tone-key {
+        .text-#{$color-key}-#{$tone-key} {
+          color: $tone-value !important;
+        }
+      }
+    }
+  }
+}
+
+// For background colors
+@each $color-key, $color-value in $colors {
+  @each $tone-key, $tone-value in $color-value {
+    @if $tone-key == base {
+      .bg-#{$color-key} {
+        background-color: $tone-value !important;
+      }
+    } @else {
+      @if $tone-key {
+        .bg-#{$color-key}-#{$tone-key} {
+          background-color: $tone-value !important;
+        }
+      }
+    }
+  }
+}
