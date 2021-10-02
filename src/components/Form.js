@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({ className, children, onSubmit }) {
+function Form({ className = "", children, onSubmit }) {
   const classes = `form ${className}`;
 
   function handleSubmit(e) {

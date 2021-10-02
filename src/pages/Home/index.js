@@ -1,14 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import MenuTogglerProvider from "../../hooks/menuToggler";
+import DiscipleList from "./DiscipleList";
 
 function Home(props) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
   return (
     <Fragment>
-      <Header onMenuIconClick={() => setIsSidebarOpen((p) => !p)} />
-      <Sidebar open={isSidebarOpen} />
+      <MenuTogglerProvider>
+        <Header />
+        <Sidebar />
+      </MenuTogglerProvider>
+      <div className='content'>
+        <DiscipleList />
+      </div>
     </Fragment>
   );
 }

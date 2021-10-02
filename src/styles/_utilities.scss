@@ -226,8 +226,23 @@ $heights: (
   cursor: pointer;
 }
 
+@media only screen and (max-width: $mobile-bp) {
+  .hide-sm {
+    display: none;
+  }
+
+  .no-margin-sm {
+    margin: 0;
+  }
+}
+
 @mixin flexCenter {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin flexAlignCenter {
+  display: flex;
+  align-items: center;
 }

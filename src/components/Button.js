@@ -5,7 +5,7 @@ function Button({
   variant = "contained",
   text,
   onClick,
-  className,
+  className = "",
   ...rest
 }) {
   const classes = `btn btn-${color} btn-${variant} ${className}`;

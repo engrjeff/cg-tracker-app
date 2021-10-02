@@ -7,7 +7,7 @@ function ListItem({
   primarytext,
   subtext,
   onClick,
-  className,
+  className = "",
 }) {
   return (
     <div

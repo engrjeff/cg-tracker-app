@@ -44,23 +44,60 @@
   text-transform: uppercase;
 }
 
+// CONTENT
+.content {
+  background-color: springgreen;
+  margin-left: auto;
+  height: calc(100% - $header-height);
+  width: calc(100% - $sidebar-width);
+
+  @media only screen and (max-width: $mobile-bp) {
+    & {
+      width: 100vw;
+    }
+  }
+}
+
+// OVERLAY
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+
+  @media only screen and (min-width: $mobile-bp) {
+    &.overlay-menu {
+      display: none !important;
+    }
+  }
+}
+
 // HEADER
 .header {
-  display: flex;
-  align-items: center;
+  @include flexAlignCenter;
+
   width: 100%;
   height: $header-height;
   color: $dark-300;
   background-color: $white;
   border-bottom: 1px solid $light-100;
   position: relative;
-  z-index: 30;
+  z-index: 101;
 
   &-logo-box {
     @include flexCenter;
     height: 100%;
     width: $sidebar-width;
     border-right: 1px solid $light-100;
+
+    @media only screen and (max-width: $mobile-bp) {
+      & {
+        order: 2;
+      }
+    }
   }
 
   &-menu-icon {
@@ -73,6 +110,13 @@
 
     &:hover {
       background-color: $light-100;
+    }
+
+    @media only screen and (max-width: $mobile-bp) {
+      & {
+        order: 1;
+        display: flex;
+      }
     }
   }
 
@@ -87,6 +131,13 @@
 
     &:hover {
       background-color: $light-100;
+    }
+
+    @media only screen and (max-width: $mobile-bp) {
+      & {
+        order: 3;
+        margin-right: 0;
+      }
     }
   }
 }
@@ -111,11 +162,10 @@
   min-width: 28rem;
 
   &-logo {
+    @include flexCenter;
+
     width: 100%;
     height: 2.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 2rem;
   }
 
@@ -170,26 +220,26 @@
   width: $sidebar-width;
   border-right: 1px solid $light-100;
   position: absolute;
-  top: 0;
+  top: $header-height;
   left: 0;
   bottom: 0;
+  z-index: 101;
 
-  transform: translateX(-$sidebar-width);
+  transform: translateX(0);
+  transition: transform 0.3s;
 
-  &-logo-box {
-    @include flexCenter;
-    height: $header-height;
-    width: $sidebar-width;
-    border-right: 1px solid $light-100;
-    opacity: 0;
+  @media only screen and (min-width: $mobile-bp) {
+    & {
+      transform: translateX(0) !important;
+    }
   }
 
   &-open {
-    animation: slideIn 0.3s ease-in forwards;
+    transform: translateX(0);
   }
 
   &-close {
-    animation: slideOut 0.3s ease-out forwards;
+    transform: translateX(-100%);
   }
 
   // Menu
@@ -209,8 +259,8 @@
 
 // LIST
 .list-item {
-  display: flex;
-  align-items: center;
+  @include flexAlignCenter;
+
   padding: 0.75rem 1rem;
   color: $dark-300;
   transition: all 0.2s;

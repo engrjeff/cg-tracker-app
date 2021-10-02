@@ -2500,6 +2500,15 @@ template {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 600px) {
+  .hide-sm {
+    display: none;
+  }
+
+  .no-margin-sm {
+    margin: 0;
+  }
+}
 @keyframes slideIn {
   0% {
     transform: translateX(-240px);
@@ -2631,6 +2640,33 @@ template {
   text-transform: uppercase;
 }
 
+.content {
+  background-color: springgreen;
+  margin-left: auto;
+  height: calc(100% - 60px);
+  width: calc(100% - 240px);
+}
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 100vw;
+  }
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+@media only screen and (min-width: 600px) {
+  .overlay.overlay-menu {
+    display: none !important;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -2640,7 +2676,7 @@ template {
   background-color: #ffffff;
   border-bottom: 1px solid #ededed;
   position: relative;
-  z-index: 30;
+  z-index: 101;
 }
 .header-logo-box {
   display: flex;
@@ -2649,6 +2685,11 @@ template {
   height: 100%;
   width: 240px;
   border-right: 1px solid #ededed;
+}
+@media only screen and (max-width: 600px) {
+  .header-logo-box {
+    order: 2;
+  }
 }
 .header-menu-icon {
   display: flex;
@@ -2663,6 +2704,12 @@ template {
 .header-menu-icon:hover {
   background-color: #ededed;
 }
+@media only screen and (max-width: 600px) {
+  .header-menu-icon {
+    order: 1;
+    display: flex;
+  }
+}
 .header-user-box {
   display: flex;
   align-items: center;
@@ -2676,6 +2723,12 @@ template {
 }
 .header-user-box:hover {
   background-color: #ededed;
+}
+@media only screen and (max-width: 600px) {
+  .header-user-box {
+    order: 3;
+    margin-right: 0;
+  }
 }
 
 .avatar {
@@ -2698,11 +2751,11 @@ template {
   min-width: 28rem;
 }
 .form-logo {
-  width: 100%;
-  height: 2.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 2.8rem;
   margin-bottom: 2rem;
 }
 .form-text {
@@ -2747,25 +2800,23 @@ template {
   width: 240px;
   border-right: 1px solid #ededed;
   position: absolute;
-  top: 0;
+  top: 60px;
   left: 0;
   bottom: 0;
-  transform: translateX(-240px);
+  z-index: 101;
+  transform: translateX(0);
+  transition: transform 0.3s;
 }
-.sidebar-logo-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 240px;
-  border-right: 1px solid #ededed;
-  opacity: 0;
+@media only screen and (min-width: 600px) {
+  .sidebar {
+    transform: translateX(0) !important;
+  }
 }
 .sidebar-open {
-  animation: slideIn 0.3s ease-in forwards;
+  transform: translateX(0);
 }
 .sidebar-close {
-  animation: slideOut 0.3s ease-out forwards;
+  transform: translateX(-100%);
 }
 .sidebar-menu {
   padding: 2rem 0;

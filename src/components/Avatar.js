@@ -1,6 +1,6 @@
 import React from "react";
 
-function Avatar({ image, alt, text, className }) {
+function Avatar({ image, alt, text, className = "" }) {
   const classes = `avatar avatar-${image ? "img" : "text"} ${className}`;
 
   if (image) {
