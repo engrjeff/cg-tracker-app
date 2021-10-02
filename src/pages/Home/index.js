@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
+
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import MenuTogglerProvider from "../../hooks/menuToggler";
-import DiscipleList from "./DiscipleList";
+import Dashboard from "../Dashboard";
+import Management from "../Management";
 
 function Home(props) {
   return (
@@ -11,9 +13,7 @@ function Home(props) {
         <Header />
         <Sidebar />
       </MenuTogglerProvider>
-      <div className='content'>
-        <DiscipleList />
-      </div>
+      <Management />
     </Fragment>
   );
 }

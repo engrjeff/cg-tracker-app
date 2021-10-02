@@ -1,8 +1,12 @@
 import React from "react";
 
-function Box({ className = "", rounded = false, children }) {
+function Box({ className, borderedBottom = false, rounded = false, children }) {
   return (
-    <div className={`${rounded ? "box-rounded" : null} ${className}`}>
+    <div
+      className={`box ${rounded ? "box-rounded" : ""} ${
+        borderedBottom ? "box-bordered-bottom" : ""
+      } ${className}`}
+    >
       {children}
     </div>
   );

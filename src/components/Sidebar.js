@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Fragment } from "react";
 import { useMenuToggler } from "../hooks/menuToggler";
 
-import AppLogo from "./AppLogo";
 import ListItem from "./ListItem";
 import Overlay from "./Overlay";
 

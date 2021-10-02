@@ -4,6 +4,7 @@ import SvgIcon from "./SvgIcon";
 function ListItem({
   isSelected,
   icon,
+  Avatar,
   primarytext,
   subtext,
   onClick,
@@ -19,6 +20,11 @@ function ListItem({
       {icon && (
         <div className='list-item__icon'>
           <SvgIcon name={icon} />
+        </div>
+      )}
+      {Avatar && (
+        <div className='mr-3'>
+          <Avatar />
         </div>
       )}
       <div className='list-item__text-box'>

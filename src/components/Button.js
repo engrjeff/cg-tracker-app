@@ -1,17 +1,19 @@
 import React from "react";
 
 function Button({
+  size = "reg",
   color = "primary",
   variant = "contained",
   text,
   onClick,
   className = "",
+  Icon,
   ...rest
 }) {
-  const classes = `btn btn-${color} btn-${variant} ${className}`;
+  const classes = `btn btn-${size} btn-${color} btn-${variant} ${className}`;
   return (
     <button className={classes} onClick={onClick} {...rest}>
-      {text}
+      {Icon && <Icon />} {text}
     </button>
   );
 }
