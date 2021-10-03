@@ -64,6 +64,11 @@
   }
 }
 
+// LOGO
+.logo {
+  height: 60%;
+}
+
 // TEXT
 .text-lead {
   font-size: 15px;
@@ -295,6 +300,9 @@
 
 // SIDEBAR
 .sidebar {
+  display: flex;
+  flex-direction: column;
+
   width: $sidebar-width;
   border-right: 1px solid $light-100;
   position: absolute;
@@ -325,11 +333,11 @@
     padding: 2rem 0;
 
     &-label {
-      padding: 0.8rem 1rem;
+      padding: 0.4rem 1rem;
       border-bottom: 1px solid $light-100;
       color: #ccc;
       text-transform: uppercase;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
     }
   }
@@ -392,11 +400,12 @@
   @include flexAlignCenter;
   border-bottom: 1px solid $light-100;
   user-select: none;
-  padding: 0 1rem;
+  padding: 0 0.8rem;
+  margin-bottom: 4px;
 
   &-item {
     flex: 1;
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     cursor: pointer;
     text-align: center;
     position: relative;
@@ -425,6 +434,7 @@
 
     &.active {
       color: $primary;
+      background-color: $primary-light;
     }
   }
 
@@ -462,9 +472,12 @@
     border-bottom: 2px solid $light-100;
     border-top: 2px solid $light-100;
 
+    background-color: $primary;
+    color: $primary-light;
+
     &__cell {
       flex: 1;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
       text-transform: capitalize;
 
@@ -486,6 +499,11 @@
 
       &:not(:last-child) {
         border-bottom: 1px solid $light-100;
+      }
+
+      &:nth-child(odd) {
+        background-color: rgba(#f2f2f2, 0.5);
+        color: $dark-300;
       }
     }
 

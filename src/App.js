@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import Landing from "./pages/Landing";
 
 import Loading from "./components/Loading";
 import NotFound from "./pages/NotFound";
-
-import * as ROUTES from "./constants/routes";
 
 function App(props) {
   return (
@@ -16,13 +15,16 @@ function App(props) {
       <Loading />
       <Router>
         <Switch>
-          <Route path={ROUTES.AUTH}>
-            <Auth />
+          <Route path='/' exact>
+            <Landing />
           </Route>
-          <Route path={ROUTES.HOME}>
+          <Route path='/u'>
             <Home />
           </Route>
-          <Route path={ROUTES.NOT_FOUND}>
+          <Route path='/auth'>
+            <Auth />
+          </Route>
+          <Route path='*'>
             <NotFound />
           </Route>
         </Switch>

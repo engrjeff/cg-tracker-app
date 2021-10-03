@@ -1,38 +1,32 @@
-import React, { Fragment, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { Fragment } from "react";
 import { useMenuToggler } from "../hooks/menuToggler";
 
-import ListItem from "./ListItem";
+import CustomNavLink from "./CustomNavLink";
 import Overlay from "./Overlay";
 
-const MenuItems = [
-  {
-    label: "Home",
-    items: [{ route: "/dashboard", label: "dashboard", icon: "dashboard" }],
-  },
-  {
-    label: "Personal",
-    items: [
-      { route: "/user/profile", label: "profile", icon: "user" },
-      { route: "/user/account", label: "account", icon: "account" },
-    ],
-  },
-  {
-    label: "Management",
-    items: [
-      { route: "/manage/lesson", label: "lessons", icon: "lesson" },
-      { route: "/manage/groups", label: "groups", icon: "groups" },
-    ],
-  },
-];
+import { MenuItems } from "../constants/appConstants";
+
+function SidebarMenu({ menu }) {
+  return (
+    <div key={menu.label}>
+      <div className='sidebar-menu-label'>
+        <p>{menu.label}</p>
+      </div>
+      {menu.items.map((item) => (
+        <CustomNavLink
+          key={item.route}
+          to={item.route}
+          text={item.label}
+          icon={item.icon}
+          activeClassName='selected'
+        />
+      ))}
+    </div>
+  );
+}
 
 function Sidebar() {
-  const [selectedMenu, setSelectedMenu] = useState("dashboard");
   const { state: open, toggleByValue: toggleMenu } = useMenuToggler();
-
-  function handleMenuClick(menuItem) {
-    setSelectedMenu(menuItem.label);
-  }
 
   return (
     <Fragment>
@@ -48,25 +42,12 @@ function Sidebar() {
       >
         <div className='sidebar-menu'>
           {MenuItems.map((menu) => (
-            <div key={menu.label}>
-              <div className='sidebar-menu-label'>
-                <p>{menu.label}</p>
-              </div>
-              {menu.items.map((item) => (
-                <Link key={item.label} to={item.route}>
-                  {item.label}
-                </Link>
-                // <ListItem
-                //   key={item.label}
-                //   primarytext={item.label}
-                //   isSelected={item.label === selectedMenu}
-                //   icon={item.icon}
-                //   onClick={() => handleMenuClick(item)}
-                // />
-              ))}
-            </div>
+            <SidebarMenu key={menu.label} menu={menu} />
           ))}
         </div>
+        <p className='mt-auto pb-2 text-center text-dark-100 text-size-11 fw-600'>
+          Soli Deo Gloria! ❤️
+        </p>
       </div>
     </Fragment>
   );

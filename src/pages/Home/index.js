@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useRouteMatch } from "react-router-dom";
 
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -7,11 +7,11 @@ import MenuTogglerProvider from "../../hooks/menuToggler";
 import Dashboard from "../Dashboard";
 import User from "../User";
 import Management from "../Management";
-import NotFound from "../NotFound";
-
-import * as ROUTES from "../../constants/routes";
+import Admin from "../Admin";
 
 function Home(props) {
+  const { path } = useRouteMatch();
+
   return (
     <Fragment>
       <MenuTogglerProvider>
@@ -20,16 +20,19 @@ function Home(props) {
       </MenuTogglerProvider>
 
       <Switch>
-        <Route path={ROUTES.DASHBOARD} exact>
+        <Route path={`${path}/dashboard`}>
           <Dashboard />
         </Route>
-        <Route path={ROUTES.USER} exact>
+        <Route path={`${path}/user`}>
           <User />
         </Route>
-        <Route path={ROUTES.MANAGEMENT} exact>
+        <Route path={`${path}/manage`}>
           <Management />
         </Route>
-        <Redirect from={ROUTES.HOME} to={ROUTES.DASHBOARD} />
+        <Route path={`${path}/admin`}>
+          <Admin />
+        </Route>
+        <Redirect from={path} to={`${path}/dashboard`} />
       </Switch>
     </Fragment>
   );

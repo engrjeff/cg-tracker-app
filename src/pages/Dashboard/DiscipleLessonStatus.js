@@ -11,14 +11,15 @@ import { columns, data } from "../../data";
 
 // Test Tabs
 const tabs = [
-  { id: 1, page: "church status", label: "church status" },
+  // { id: 1, page: "church status", label: "church status" },
   { id: 2, page: "soul winning", label: "soul winning" },
   { id: 3, page: "discipleship", label: "discipleship" },
   { id: 5, page: "custom lessons", label: "custom lessons" },
+  { id: 6, page: "Lord our Holiness", label: "Lord our holiness" },
 ];
 
 function DiscipleLessonStatus(props) {
-  const [currentPage, setCurrentPage] = useState("church status");
+  const [currentPage, setCurrentPage] = useState("soul winning");
 
   return (
     <Box rounded className='flex-1 d-flex flex-column'>
