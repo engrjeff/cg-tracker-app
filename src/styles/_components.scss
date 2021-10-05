@@ -21,12 +21,17 @@
     transform: scale(0.75);
     margin-right: 0.25rem;
   }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: $primary-light;
+  }
 }
 
 .btn-sm {
   padding: $base-padding-y * 0.8 $base-padding-x * 0.7;
   font-size: 13px;
-  min-width: 60px;
+  min-width: 70px;
 }
 
 // For Button Colors
@@ -180,15 +185,17 @@
 
   &-user-box {
     @include flexCenter;
-    height: 100%;
-    padding: 0 1rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
     margin-left: auto;
     margin-right: 1rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
+    position: relative;
 
     &:hover {
-      background-color: $light-100;
+      background-color: $primary-light;
     }
 
     @media only screen and (max-width: $mobile-bp) {
@@ -206,10 +213,14 @@
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
-  background-color: $primary;
+
   color: $white;
   font-weight: 700;
   text-transform: uppercase;
+
+  &-text {
+    background-color: $primary;
+  }
 }
 
 // FORM
@@ -272,7 +283,7 @@
       &:hover,
       &:focus {
         box-shadow: 0 0 0 3px $primary-light;
-        border: 1px solid $primary;
+        // border: 1px solid $primary;
       }
     }
 
@@ -357,7 +368,12 @@
     background-color: $primary-light;
   }
 
-  &:hover:not(.selected) {
+  &.sidebar-selected {
+    color: $primary-light;
+    background-color: $primary;
+  }
+
+  &:hover:not(.selected, .sidebar-selected) {
     background-color: $light-100;
   }
 
@@ -442,6 +458,7 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: capitalize;
+    white-space: nowrap;
   }
 }
 
@@ -572,5 +589,292 @@
       color: $danger-light;
       background-color: $danger;
     }
+  }
+}
+
+// MENU POPUP
+.menu-popup {
+  min-width: 140px;
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  padding: 0.5rem 0;
+  background-color: white;
+  border: 1px solid $light-100;
+  border-radius: $base-border-radius;
+  box-shadow: $box-shadow;
+
+  transition: transform 0.3s;
+  transform: scale(1);
+  transform-origin: right top;
+  z-index: 500;
+
+  animation: show-popup 150ms ease-out;
+
+  &__item {
+    padding: 0.2rem 1rem;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $light-100;
+    }
+  }
+}
+
+// MODAL
+.modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  z-index: 900;
+  user-select: none;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: $base-border-radius;
+  box-shadow: $box-shadow;
+  padding: 1rem;
+  min-width: 90%;
+  max-width: 90%;
+  z-index: 950;
+  /* align-self: flex-end; */
+  margin-bottom: 2rem;
+  animation: fadeIn;
+  animation-duration: 0.2s;
+
+  transform: translateY(0);
+
+  @media screen and (min-width: $mobile-bp) {
+    & {
+      min-width: 500px;
+      max-width: 500px;
+      align-self: center;
+    }
+  }
+}
+
+.modal-header {
+  @include flexAlignCenter;
+  margin-bottom: 0.8rem;
+}
+
+.modal-footer {
+  display: flex;
+
+  &__buttons {
+    margin-left: auto;
+    padding-top: 1rem;
+    flex: 1;
+    border-top: 1px solid $light-100;
+    @include flexAlignCenter;
+    justify-content: flex-end;
+
+    & .btn {
+      margin-left: 1rem;
+    }
+  }
+}
+
+// PROFILE
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  @include flexCenter;
+
+  & > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+  }
+
+  &-input {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    z-index: 30;
+    background-color: rgba($primary, 0.5);
+    border-radius: 50%;
+    transform: translateY(120px);
+    transition: transform 0.3s, opacity 0.2s ease-in;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: "Upload Photo";
+    font-size: 13px;
+    font-weight: 600;
+    @include flexCenter;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    color: $white;
+    border-radius: 50%;
+    background-color: rgba($black, 0.8);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s, opacity 0.2s ease-in;
+  }
+
+  &:hover &-input {
+    transform: translateY(0);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+// SNACKBAR
+.snackbar {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  min-width: 300px;
+  max-width: 350px;
+  @include flexAlignCenter;
+  background-color: $primary;
+  color: $white;
+  border-radius: $base-border-radius;
+  box-shadow: $box-shadow;
+  user-select: none;
+  z-index: 500;
+
+  position: fixed;
+  bottom: 30px;
+  left: 80%;
+
+  transform: translateX(-50%);
+
+  animation: show-snackbar;
+  animation-duration: 0.3s;
+
+  &__message {
+    color: currentColor;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+  }
+
+  &__close {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $info;
+    color: $info;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+      color: $info;
+    }
+  }
+}
+
+// PROGRESS BAR
+.progress-bar {
+  min-width: 50%;
+  display: flex;
+  background-color: $light-100;
+  border-radius: 4px;
+  overflow: hidden;
+
+  &__inner {
+    flex: 1;
+    height: 6px;
+    background-color: $info;
+    transform-origin: 0;
+    transition: transform 0.3s;
+  }
+}
+
+// FOLDER
+.folder-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: 5px;
+  min-width: 100%;
+  // padding: 0 1.5rem 1rem;
+  overflow: auto;
+}
+
+.folder-body {
+  min-height: 0;
+  overflow: auto;
+}
+
+.folder-head {
+  display: flex;
+  align-items: center;
+
+  &.selected {
+    background-color: $info-light;
+    color: $info;
+  }
+
+  &.selected > .folder-icon-right {
+    transform: rotate(90deg) scale(0.6);
+  }
+}
+
+.folder-icon {
+  transform: rotate(0) scale(0.6);
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+  transform-origin: center;
+
+  &-right {
+    margin-left: auto;
+  }
+}
+
+.folder-label {
+  font-size: 14px;
+}
+
+.folder-children {
+  margin-left: 0.5rem;
+}
+
+.folder-node {
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  border-bottom: 1px solid $light-100;
+
+  &:hover:not(.selected) {
+    background-color: $light-100;
+  }
+}
+
+.folder-child {
+  transition: all 0.2s;
+  &:hover {
+    background-color: $light-100;
   }
 }

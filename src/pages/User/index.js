@@ -3,13 +3,15 @@ import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 import Profile from "./Profile";
 import Account from "./Account";
+import Snackbar from "../../components/Snackbar";
+import { useAuth } from "../../firebase/AuthContext";
 
 function User(props) {
   const { path } = useRouteMatch();
+  const { snackbar } = useAuth();
 
   return (
     <div className='content p-3 d-flex'>
-      <h1>User page (profile & account)</h1>
       <Switch>
         <Route path={`${path}/profile`}>
           <Profile />
@@ -18,6 +20,8 @@ function User(props) {
           <Account />
         </Route>
       </Switch>
+
+      <Snackbar show={snackbar.show} message={snackbar.message} />
     </div>
   );
 }

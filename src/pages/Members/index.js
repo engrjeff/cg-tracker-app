@@ -2,8 +2,8 @@ import React from "react";
 
 function Members(props) {
   return (
-    <div>
-      <h1>Members</h1>
+    <div className='content p-3 d-flex with-gap'>
+      <h1>Members Tab</h1>
     </div>
   );
 }

@@ -4,9 +4,13 @@ import App from "./App";
 
 import reportWebVitals from "./reportWebVitals";
 
+import AuthProvider from "./firebase/AuthContext";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

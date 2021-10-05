@@ -18,7 +18,7 @@ function SidebarMenu({ menu }) {
           to={item.route}
           text={item.label}
           icon={item.icon}
-          activeClassName='selected'
+          activeClassName='sidebar-selected'
         />
       ))}
     </div>

@@ -13,8 +13,8 @@ export const MenuItems = [
   {
     label: "Management",
     items: [
-      { route: "/u/manage/lesson", label: "lessons", icon: "lesson" },
       { route: "/u/manage/members", label: "members", icon: "groups" },
+      { route: "/u/manage/lesson", label: "lessons", icon: "lesson" },
     ],
   },
   {

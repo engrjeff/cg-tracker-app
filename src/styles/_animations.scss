@@ -23,3 +23,59 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes show-popup {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// MODAL
+@keyframes fadeIn {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+// SNACKBAR
+@keyframes show-snackbar {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes hide-snackbar {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

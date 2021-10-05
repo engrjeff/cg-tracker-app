@@ -17,14 +17,14 @@ $dark-100: #aaaaaa;
 $light-500: #ffffff;
 $light-100: #ededed;
 
-$success: #18ae15;
+$success: #3fb27f;
 $success-light: #bae7b9;
 
 $info: #009cdc;
 $info-light: #ccebf8;
 
 $danger: #fc3939;
-$danger-light: #fed7d7;
+$danger-light: #fbe9e7;
 
 $warning: #efa31d;
 
@@ -44,4 +44,9 @@ $base-flex-gap: 0.75rem;
 $sidebar-width: 200px;
 $header-height: 60px;
 
-$mobile-bp: 600px;
+$mobile-bp: 576px;
+$medium-bp: 768px;
+$large-bp: 992px;
+$xlarge-bp: 1200px;
+
+$box-shadow: "0 0 14px 0 rgba(53,64,82,.05)";

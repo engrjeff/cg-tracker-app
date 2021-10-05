@@ -23,4 +23,47 @@
 <symbol id="download" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></symbol>
 
 <symbol id="chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></symbol>
+
+<symbol id="times" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
+
+<symbol
+        id ="folder_close"
+      xmlns='http://www.w3.org/2000/svg'
+      x='0px'
+      y='0px'
+      width='48'
+      height='48'
+      viewBox='0 0 172 172'
+      style="fill: #000000"
+    >
+      <g
+        fill='none'
+        fill-rule='nonzero'
+        stroke='none'
+        stroke-width='1'
+        stroke-linecap='butt'
+        stroke-linejoin='miter'
+        stroke-miterlimit='10'
+        stroke-dasharray=''
+        stroke-dashoffset='0'
+        font-family='none'
+        font-weight='none'
+        font-size='none'
+        text-anchor='none'
+        style="mix-blend-mode" :  normal
+      >
+        <path d='M0,172v-172h172v172z' fill='none'></path>
+        <g>
+          <path
+            d='M143.33333,43h-64.5l-14.33333,-14.33333h-35.83333c-7.88333,0 -14.33333,6.45 -14.33333,14.33333v28.66667h143.33333v-14.33333c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333z'
+            fill='#ffa000'
+          ></path>
+          <path
+            d='M143.33333,43h-114.66667c-7.88333,0 -14.33333,6.45 -14.33333,14.33333v71.66667c0,7.88333 6.45,14.33333 14.33333,14.33333h114.66667c7.88333,0 14.33333,-6.45 14.33333,-14.33333v-71.66667c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333z'
+            fill='#ffca28'
+          ></path>
+        </g>
+      </g>
+    </symbol>
+
 </svg>

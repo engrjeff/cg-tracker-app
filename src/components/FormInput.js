@@ -7,18 +7,26 @@ function FormInput({
   placeholder,
   onChange,
   value,
+  error,
+  ...rest
 }) {
   return (
     <div className='form-control'>
-      <label className='form-control__label' htmlFor={name}>
-        {label}
-      </label>
+      {label && (
+        <label className='form-control__label' htmlFor={name}>
+          {label}
+        </label>
+      )}
       <input
         className='form-control__input'
         type={type}
         name={name}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        {...rest}
       />
+      {error && <p className='text-size-12 text-danger p-2'>{error}</p>}
     </div>
   );
 }

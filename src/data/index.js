@@ -103,3 +103,59 @@ export const data = [
     status: "ok",
   },
 ];
+
+export const series = [
+  {
+    id: 1,
+    title: "Soul Winning",
+    type: "series",
+    lessons: [
+      { id: 1.1, title: "Love of God (John 3:16)", type: "lesson" },
+      { id: 1.2, title: "From Death to Life (Rom. 6:23)", type: "lesson" },
+      { id: 1.3, title: "Saved by Grace (Eph. 2:8)", type: "lesson" },
+      { id: 1.4, title: "No Condemnation (Rom. 8:1)", type: "lesson" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Discipleship",
+    type: "series",
+    lessons: [
+      { id: 2.1, title: "Saving Grace", type: "lesson" },
+      { id: 2.2, title: "Justification (Judicial)", type: "lesson" },
+      { id: 2.3, title: "Justification (Accounting)", type: "lesson" },
+      { id: 2.4, title: "The New Birth", type: "lesson" },
+    ],
+  },
+  {
+    id: 2.5,
+    title: "Luke 15",
+    type: "series",
+    lessons: [
+      { id: 2.11, title: "Luke 15 1", type: "lesson" },
+      { id: 2.21, title: "Luke 15 2", type: "lesson" },
+      { id: 2.31, title: "Luke 15 3", type: "lesson" },
+      { id: 2.41, title: "Luke 15 4", type: "lesson" },
+    ],
+  },
+  {
+    id: 3,
+    title: "The LORD our Holiness",
+    type: "series",
+    lessons: [
+      { id: 3.1, title: "Foundation", type: "lesson" },
+      { id: 3.2, title: "Atonement", type: "lesson" },
+      {
+        id: 3.3,
+        title: "Separation from, Separation for",
+        type: "lesson",
+      },
+      { id: 3.4, title: "Holiness: God's Sovereign Act", type: "lesson" },
+    ],
+  },
+  {
+    id: 4,
+    title: "The LORD our Righteousness",
+    type: "series",
+  },
+];
