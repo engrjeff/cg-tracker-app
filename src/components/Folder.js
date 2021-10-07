@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 
-function Folder({ data, nodeKey, childKey, onNodeClick }) {
+function Folder({
+  data,
+  nodeKey,
+  childKey,
+  onNodeClick,
+  HeadFolderComponent,
+  ChildComponent,
+  hasFolderIcon = true,
+  isTreeLike = true,
+}) {
   const [selectedNode, setSelectedNode] = useState(null);
 
   const isNode = (item) => item.type === nodeKey;
   const hasChildren = (item) => item[childKey] && selectedNode === item.id;
 
-  function handleNodeClick(item) {
+  function handleNodeClick(e, item) {
     if (item.id === selectedNode) {
       setSelectedNode(null);
       if (onNodeClick) onNodeClick(null);
@@ -19,30 +28,50 @@ function Folder({ data, nodeKey, childKey, onNodeClick }) {
   }
 
   function getHeadClass(item) {
-    return `folder-head  ${isNode(item) ? "folder-node" : "folder-child"} ${
-      item.id === selectedNode ? "selected" : ""
-    }`;
+    return `folder-head ${isNode(item) ? "folder-node" : "folder-child"} 
+    ${item.id === selectedNode ? "selected" : ""}
+      ${isTreeLike && !isNode(item) ? "tree-like" : ""}`;
+  }
+
+  function renderComponent(item) {
+    const Comp = isNode(item) ? HeadFolderComponent : ChildComponent;
+    return Comp ? (
+      <Comp item={item} />
+    ) : (
+      <label className='folder-label'>{item.title}</label>
+    );
   }
 
   return (
-    <div className='folder-container p-3'>
+    <div className='folder-container p-3 root'>
       {data &&
         data.map((item) => (
           <div key={item.id} className='folder'>
-            <div
-              onClick={() => handleNodeClick(item)}
-              className={getHeadClass(item)}
-            >
-              <div className='folder-icon'>
-                {isNode(item) ? (
-                  <FolderCloseIcon type={item[childKey] ? "close" : "empty"} />
-                ) : (
-                  <FileIcon />
+            <div className={getHeadClass(item)}>
+              <div
+                className='folder-head-content'
+                onClick={(e) => handleNodeClick(e, item)}
+              >
+                {hasFolderIcon && (
+                  <div className='folder-icon'>
+                    {isNode(item) ? (
+                      <FolderCloseIcon
+                        type={item[childKey] ? "close" : "empty"}
+                      />
+                    ) : (
+                      <FileIcon />
+                    )}
+                  </div>
                 )}
+                {renderComponent(item)}
               </div>
-              <label className='folder-label'>{item.title}</label>
-              <div className='folder-icon folder-icon-right'>
-                {isNode(item) && item[childKey] ? <RightIcon /> : null}
+              <div className='relative'>
+                <div
+                  id='menuFolderBtn'
+                  className='folder-icon folder-icon-right'
+                >
+                  {/* {isNode(item) && item[childKey] ? <RightIcon /> : null} */}
+                </div>
               </div>
             </div>
             {hasChildren(item) && (
@@ -52,6 +81,10 @@ function Folder({ data, nodeKey, childKey, onNodeClick }) {
                   nodeKey={nodeKey}
                   childKey={childKey}
                   onNodeClick={onNodeClick}
+                  HeadFolderComponent={HeadFolderComponent}
+                  ChildComponent={ChildComponent}
+                  hasFolderIcon={hasFolderIcon}
+                  isTreeLike={isTreeLike}
                 />
               </div>
             )}
@@ -116,7 +149,7 @@ function FolderCloseIcon({ type = "close" }) {
   );
 }
 
-function RightIcon() {
+export function RightIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

@@ -616,6 +616,7 @@
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
+    color: $dark-300 !important;
 
     &:hover {
       background-color: $light-100;
@@ -655,6 +656,7 @@
   animation-duration: 0.2s;
 
   transform: translateY(0);
+  // color: $dark-300;
 
   @media screen and (min-width: $mobile-bp) {
     & {
@@ -668,6 +670,7 @@
 .modal-header {
   @include flexAlignCenter;
   margin-bottom: 0.8rem;
+  font-size: 14px;
 }
 
 .modal-footer {
@@ -821,6 +824,7 @@
   min-width: 100%;
   // padding: 0 1.5rem 1rem;
   overflow: auto;
+  flex: 1;
 }
 
 .folder-body {
@@ -831,10 +835,20 @@
 .folder-head {
   display: flex;
   align-items: center;
+  flex: 1;
+  position: relative;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
 
   &.selected {
     background-color: $info-light;
-    color: $info;
+    & > &-content {
+      color: $info;
+    }
   }
 
   &.selected > .folder-icon-right {
@@ -851,6 +865,16 @@
   &-right {
     margin-left: auto;
   }
+  &-menu {
+    & > svg {
+      transform: scale(0.4);
+      cursor: pointer;
+
+      &::hover {
+        color: $dark-300;
+      }
+    }
+  }
 }
 
 .folder-label {
@@ -858,7 +882,13 @@
 }
 
 .folder-children {
-  margin-left: 0.5rem;
+  margin-left: 1.2rem;
+  // min-height: 100px;
+  max-height: 300px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .folder-node {
@@ -870,11 +900,132 @@
   &:hover:not(.selected) {
     background-color: $light-100;
   }
+
+  &.selected {
+    border-bottom: 1px solid $info-light;
+  }
 }
 
 .folder-child {
   transition: all 0.2s;
+  position: relative;
+
   &:hover {
     background-color: $light-100;
+  }
+
+  &.tree-like::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -9px;
+    width: 23px;
+    border-top: 3px solid $primary-light;
+  }
+
+  &.tree-like::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: -9px;
+    height: 100%;
+    border-right: 3px solid $primary-light;
+  }
+}
+
+// FILE INPUT
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 2.5rem;
+
+  &-input {
+    margin: 0;
+    opacity: 0;
+    width: 120px;
+  }
+
+  &::before {
+    position: absolute;
+    top: -0.075rem;
+    left: 0;
+    bottom: -0.075rem;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    content: "Browse";
+    height: 2.5rem;
+    padding: 0.3rem 1rem;
+    line-height: 1.5;
+    color: $white;
+    background-color: $info;
+    border-radius: $base-border-radius;
+    font-size: 14px;
+  }
+}
+
+// CHECKBOX
+.checkbox-input {
+  display: none;
+
+  &:checked ~ .checkbox-label > svg {
+    transform: scale(1);
+  }
+
+  &:checked ~ .checkbox-label .checkbox-btn {
+    border: 2px solid $primary;
+  }
+
+  &:checked ~ .checkbox-label .checkbox-btn:after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.checkbox-label {
+  display: inline-block;
+  font-size: 14px;
+  color: $dark-300;
+  cursor: pointer;
+  position: relative;
+  padding-left: 1.8rem;
+  user-select: none;
+
+  & > svg {
+    position: absolute;
+    left: 2px;
+    top: 1px;
+    color: #fff;
+    transform: scale(0);
+    transition: transform 0.2s;
+  }
+}
+
+.checkbox-btn {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  border: 2px solid $dark-100;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 2px;
+
+  background-color: #fff;
+  color: #fff;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: $primary;
+    transition: transform 0.2s;
+    z-index: inherit;
   }
 }

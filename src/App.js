@@ -9,13 +9,15 @@ import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useLessonSeries } from "./firebase/LessonSeriesContext";
 
 function App() {
   const { isLoading } = useAuth();
+  const { isLoading: seriesLoading } = useLessonSeries();
 
   return (
     <div className='bg-light-100 w-vw h-vh'>
-      <Loading show={isLoading} />
+      <Loading show={isLoading || seriesLoading} />
       <Router>
         <Switch>
           <Route path='/' exact>

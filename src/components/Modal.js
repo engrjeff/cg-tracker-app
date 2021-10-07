@@ -4,15 +4,15 @@ import Button from "./Button";
 import IconButton from "./IconButton";
 
 function ModalMessage({ children }) {
-  return <p className='text-size-14 mb-3'>{children}</p>;
+  return <p className='text-size-14 mb-3 p-3'>{children}</p>;
 }
 
 function ModalContent({ children }) {
   const style = { maxHeight: "400px", overflow: "auto" };
   return (
-    <p className='p-3' style={style}>
+    <div className='p-3' style={style}>
       {children}
-    </p>
+    </div>
   );
 }
 
@@ -34,7 +34,7 @@ function Modal({
 
   function handleCancel() {
     if (onCancel) onCancel();
-    onClose();
+    if (onClose) onClose();
   }
 
   function handleOk() {
@@ -44,11 +44,11 @@ function Modal({
 
   return (
     <div className='modal-container'>
-      <div className='modal-content'>
+      <div className='modal-content' onClick={(e) => e.stopPropagation()}>
         <div className='modal-header'>
-          <p className='text-size-16 fw-bold'>{title}</p>
+          <p className='text-size-14 fw-bold ml-3'>{title}</p>
           <IconButton
-            className='ml-auto'
+            className='ml-auto bg-white'
             iconName='times'
             onClick={handleCancel}
           />

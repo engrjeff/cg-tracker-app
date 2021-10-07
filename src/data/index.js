@@ -125,19 +125,20 @@ export const series = [
       { id: 2.2, title: "Justification (Judicial)", type: "lesson" },
       { id: 2.3, title: "Justification (Accounting)", type: "lesson" },
       { id: 2.4, title: "The New Birth", type: "lesson" },
+      {
+        id: 2.5,
+        title: "Luke 15",
+        type: "series",
+        lessons: [
+          { id: 2.11, title: "Luke 15 1", type: "lesson" },
+          { id: 2.21, title: "Luke 15 2", type: "lesson" },
+          { id: 2.31, title: "Luke 15 3", type: "lesson" },
+          { id: 2.41, title: "Luke 15 4", type: "lesson" },
+        ],
+      },
     ],
   },
-  {
-    id: 2.5,
-    title: "Luke 15",
-    type: "series",
-    lessons: [
-      { id: 2.11, title: "Luke 15 1", type: "lesson" },
-      { id: 2.21, title: "Luke 15 2", type: "lesson" },
-      { id: 2.31, title: "Luke 15 3", type: "lesson" },
-      { id: 2.41, title: "Luke 15 4", type: "lesson" },
-    ],
-  },
+
   {
     id: 3,
     title: "The LORD our Holiness",

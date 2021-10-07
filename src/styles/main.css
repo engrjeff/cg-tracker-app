@@ -631,79 +631,79 @@ template {
 }
 
 .text-size-10 {
-  font-size: 10px;
+  font-size: 10px !important;
 }
 
 .text-size-11 {
-  font-size: 11px;
+  font-size: 11px !important;
 }
 
 .text-size-12 {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .text-size-14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .text-size-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .text-size-18 {
-  font-size: 18px;
+  font-size: 18px !important;
 }
 
 .text-size-20 {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 .text-size-24 {
-  font-size: 24px;
+  font-size: 24px !important;
 }
 
 .text-size-28 {
-  font-size: 28px;
+  font-size: 28px !important;
 }
 
 .text-size-32 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 .text-size-36 {
-  font-size: 36px;
+  font-size: 36px !important;
 }
 
 .text-size-40 {
-  font-size: 40px;
+  font-size: 40px !important;
 }
 
 .fw-300 {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 .fw-400 {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .fw-500 {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .fw-600 {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .fw-700 {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .fw-800 {
-  font-weight: 800;
+  font-weight: 800 !important;
 }
 
 .fw-bold {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .text-left {
@@ -2572,6 +2572,17 @@ template {
   position: relative;
 }
 
+.circle {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes slideIn {
   0% {
     transform: translateX(-200px);
@@ -3259,6 +3270,7 @@ template {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
+  color: #444444 !important;
 }
 .menu-popup__item:hover {
   background-color: #ededed;
@@ -3305,6 +3317,7 @@ template {
   display: flex;
   align-items: center;
   margin-bottom: 0.8rem;
+  font-size: 14px;
 }
 
 .modal-footer {
@@ -3445,6 +3458,7 @@ template {
   border-radius: 5px;
   min-width: 100%;
   overflow: auto;
+  flex: 1;
 }
 
 .folder-body {
@@ -3455,9 +3469,18 @@ template {
 .folder-head {
   display: flex;
   align-items: center;
+  flex: 1;
+  position: relative;
+}
+.folder-head-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 .folder-head.selected {
   background-color: #ccebf8;
+}
+.folder-head.selected > .folder-head.selected-content {
   color: #009cdc;
 }
 .folder-head.selected > .folder-icon-right {
@@ -3473,13 +3496,25 @@ template {
 .folder-icon-right {
   margin-left: auto;
 }
+.folder-icon-menu > svg {
+  transform: scale(0.4);
+  cursor: pointer;
+}
+.folder-icon-menu > svg::hover {
+  color: #444444;
+}
 
 .folder-label {
   font-size: 14px;
 }
 
 .folder-children {
-  margin-left: 0.5rem;
+  margin-left: 1.2rem;
+  max-height: 300px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .folder-node {
@@ -3491,12 +3526,119 @@ template {
 .folder-node:hover:not(.selected) {
   background-color: #ededed;
 }
+.folder-node.selected {
+  border-bottom: 1px solid #ccebf8;
+}
 
 .folder-child {
   transition: all 0.2s;
+  position: relative;
 }
 .folder-child:hover {
   background-color: #ededed;
+}
+.folder-child.tree-like::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -9px;
+  width: 23px;
+  border-top: 3px solid #d1d3d6;
+}
+.folder-child.tree-like::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -9px;
+  height: 100%;
+  border-right: 3px solid #d1d3d6;
+}
+
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 2.5rem;
+}
+.file-input {
+  margin: 0;
+  opacity: 0;
+  width: 120px;
+}
+.file::before {
+  position: absolute;
+  top: -0.075rem;
+  left: 0;
+  bottom: -0.075rem;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  content: "Browse";
+  height: 2.5rem;
+  padding: 0.3rem 1rem;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #009cdc;
+  border-radius: 0.25rem;
+  font-size: 14px;
+}
+
+.checkbox-input {
+  display: none;
+}
+.checkbox-input:checked ~ .checkbox-label > svg {
+  transform: scale(1);
+}
+.checkbox-input:checked ~ .checkbox-label .checkbox-btn {
+  border: 2px solid #1b2430;
+}
+.checkbox-input:checked ~ .checkbox-label .checkbox-btn:after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox-label {
+  display: inline-block;
+  font-size: 14px;
+  color: #444444;
+  cursor: pointer;
+  position: relative;
+  padding-left: 1.8rem;
+  user-select: none;
+}
+.checkbox-label > svg {
+  position: absolute;
+  left: 2px;
+  top: 1px;
+  color: #fff;
+  transform: scale(0);
+  transition: transform 0.2s;
+}
+
+.checkbox-btn {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  border: 2px solid #aaaaaa;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #fff;
+  overflow: hidden;
+}
+.checkbox-btn:after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: #1b2430;
+  transition: transform 0.2s;
+  z-index: inherit;
 }
 
 /*# sourceMappingURL=main.css.map */

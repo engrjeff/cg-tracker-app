@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Box from "../../components/Box";
 import Button from "../../components/Button";
 import TextLead from "../../components/TextLead";
@@ -11,23 +11,17 @@ import useStorage from "../../firebase/useStorage";
 import ProgressBar from "../../components/ProgressBar";
 
 function Profile(props) {
-  const { user, updateUserProfile } = useAuth();
+  const { user, updateUserProfile, updateUserPhoto } = useAuth();
 
   const [name, setName] = useState(user.displayName || "");
   const [file, setFile] = useState(null);
   const [isFormShown, setIsFormShown] = useState(false);
 
-  const { progress } = useStorage(file);
+  const updatePhoto = useCallback(updateUserPhoto, [updateUserPhoto]);
+  const path = `user/${user.uid}`;
+  const { progress } = useStorage(file, path, updatePhoto);
 
   const types = ["image/png", "image/jpeg"];
-
-  useEffect(() => {
-    if (progress === 100) {
-      setTimeout(() => {
-        setFile(null);
-      }, 700);
-    }
-  }, [progress]);
 
   function handleFileChange(e) {
     let selected = e.target.files[0];

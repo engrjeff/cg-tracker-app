@@ -1,26 +1,21 @@
 import { useEffect, useState } from "react";
-import { storage, db, timestamp } from "./config";
+import { storage } from "./config";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection } from "firebase/firestore";
-import { useAuth } from "./AuthContext";
 
-function useStorage(file) {
+function useStorage(file, path, onDone = () => {}) {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
 
-  const { updateUserPhoto } = useAuth();
-
   useEffect(() => {
     if (!file) return;
     // references
-    const storageRef = ref(storage, file.name);
-    const collectionRef = collection(db, "profile_images");
+    const storageRef = ref(storage, `${path}/${file.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on(
+    const unsub = uploadTask.on(
       "state_changed",
       (snapshot) => {
         const progress =
@@ -29,16 +24,21 @@ function useStorage(file) {
       },
       (error) => {
         console.error("FILE UPLOAD ERR: ", error.message);
+        console.error("FILE ON ERROR:", file);
+        setError(error.message);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadUrl) => {
-          await updateUserPhoto(downloadUrl);
+          setUrl(downloadUrl);
+          await onDone(downloadUrl);
         });
       }
     );
-  }, [file]);
 
-  return { progress };
+    return unsub;
+  }, [file, onDone, path]);
+
+  return { url, error, progress };
 }
 
 export default useStorage;

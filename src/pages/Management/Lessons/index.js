@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-import Box from "../../components/Box";
-import Button from "../../components/Button";
-import Folder from "../../components/Folder";
-import TextLead from "../../components/TextLead";
-import AddLessonModal from "./Lessons/AddLessonModal";
+import Box from "../../../components/Box";
+import Button from "../../../components/Button";
+import Folder from "../../../components/Folder";
+import TextLead from "../../../components/TextLead";
+import AddLessonModal from "./AddLessonModal";
 import AddSeriesModal from "./AddSeriesModal";
 
-import { useLessonSeries } from "../../firebase/LessonSeriesContext";
-import SeriesComponent from "./Lessons/SeriesComponent";
-import LessonComponent from "./Lessons/LessonComponent";
+import { useLessonSeries } from "../../../firebase/LessonSeriesContext";
+import SeriesComponent from "./SeriesComponent";
+import LessonComponent from "./LessonComponent";
 
-function LessonsTable(props) {
+function LessonsView(props) {
   const [currentSeries, setCurrentSeries] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showCreateLessonModal, setShowCreateLessonModal] = useState(false);
@@ -70,4 +70,4 @@ function LessonsTable(props) {
   );
 }
 
-export default LessonsTable;
+export default LessonsView;

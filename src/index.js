@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import AuthProvider from "./firebase/AuthContext";
+import LessonSeriesProvider from "./firebase/LessonSeriesContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <LessonSeriesProvider>
+        <App />
+      </LessonSeriesProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

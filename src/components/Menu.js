@@ -2,6 +2,10 @@ import React from "react";
 import ClickOutside from "../hooks/useClickOutside";
 
 function Menu({ menuItems, show, onClose, onItemClick }) {
+  function handleItemClick(item) {
+    onItemClick(item);
+    onClose();
+  }
   return (
     <ClickOutside callback={onClose}>
       {show ? (
@@ -10,10 +14,10 @@ function Menu({ menuItems, show, onClose, onItemClick }) {
             menuItems.map((item) => (
               <div
                 className='menu-popup__item'
-                key={item.label}
-                onClick={() => onItemClick(item)}
+                key={item.label || item}
+                onClick={() => handleItemClick(item)}
               >
-                <p>{item.label}</p>
+                <p>{item.label || item}</p>
               </div>
             ))}
         </div>
